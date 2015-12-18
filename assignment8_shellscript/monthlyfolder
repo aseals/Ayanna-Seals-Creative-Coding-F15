@@ -1,0 +1,22 @@
+##NYU Creative Coding Fall 2015
+##Assignment: Shell script to make a task easier
+##This script creates a folder on my desktop named after the month and year and moves all of the files from the desktop into it
+
+#!/bin/bash
+
+MONTH=$(date +%m)
+
+monthnames=(invalid January February March April May June July August September October November December)
+
+MONTHNAME=${monthnames[${MONTH}]}
+
+echo ${MONTHNAME}
+
+time_stamp=${MONTHNAME}_$(date +%Y)
+mkdir -p "$HOME/Desktop/${time_stamp}"
+
+for f in $HOME/Desktop/*; do
+    if [ -f "$f" ]; then
+        mv "$f" $HOME/Desktop/${time_stamp}/
+    fi
+done
